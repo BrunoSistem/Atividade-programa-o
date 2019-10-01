@@ -1,0 +1,144 @@
+package Exercicio2;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Pessoa extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textField;
+	protected static final JRadioButton True = null;
+	protected static final JRadioButton False = null;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PesoPessoa frame = new PesoPessoa();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Pessoa() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Peso na terra(kg):");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(39, 11, 106, 21);
+		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(39, 43, 96, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblSelecioneOPlaneta = new JLabel("Selecione o planeta:");
+		lblSelecioneOPlaneta.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblSelecioneOPlaneta.setBounds(39, 103, 141, 21);
+		contentPane.add(lblSelecioneOPlaneta);
+		
+		JRadioButton merc = new JRadioButton("M\u00E9rcurio", false);
+		merc.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		merc.setBounds(39, 141, 77, 23);
+		contentPane.add(merc);
+		
+		JRadioButton mart = new JRadioButton("Marte", false);
+		mart.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		mart.setBounds(159, 141, 77, 23);
+		contentPane.add(mart);
+		
+		JRadioButton satu = new JRadioButton("Saturno", false);
+		satu.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		satu.setBounds(278, 141, 109, 23);
+		contentPane.add(satu);
+		
+		JRadioButton venu = new JRadioButton("V\u00EAnus", false);
+		venu.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		venu.setBounds(39, 185, 77, 23);
+		contentPane.add(venu);
+		
+		JRadioButton jupi = new JRadioButton("J\u00FApiter", false);
+		jupi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		jupi.setBounds(159, 186, 77, 23);
+		contentPane.add(jupi);
+		
+		JRadioButton uran = new JRadioButton("Urano", false);
+		uran.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		uran.setBounds(278, 186, 77, 23);
+		contentPane.add(uran);
+		
+		JButton btnCalcularPeso = new JButton("Calcular Peso");
+		btnCalcularPeso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				double mer = 0.37;
+				double ven = 0.88;
+				double mar = 0.38;
+				double jup = 2.64;
+				double sat = 1.15;
+				double ura = 1.17;
+				double result = 0.00;
+				double peso = Double.parseDouble(textField.getText());
+				
+				if(merc.isSelected() == true) {
+					result = (peso / 10.00) * mer;
+					JOptionPane.showMessageDialog(null, "O seu peso em Mécurio é: " + result);
+				}
+				if(venu.isSelected() == true) {
+					result = (peso / 10.00) * ven;
+					JOptionPane.showMessageDialog(null, "O seu peso em Vênus é: " + result);
+				}
+				if(mart.isSelected() == true) {
+					result = (peso / 10.00) * mar;
+					JOptionPane.showMessageDialog(null, "O seu peso em Marte é: " + result);
+				}
+				if(jupi.isSelected() == true) {
+					result = (peso / 10.00) * jup;
+					JOptionPane.showMessageDialog(null, "O seu peso em Júpiter é: " + result);
+				}
+				if(satu.isSelected() == true) {
+					result = (peso / 10.00) * sat;
+					JOptionPane.showMessageDialog(null, "O seu peso em Saturno é: " + result);
+				}
+				if(uran.isSelected() == true) {
+					result = (peso / 10.00) * ura;
+					JOptionPane.showMessageDialog(null, "O seu peso em Urano é: " + result);
+				}
+				
+			}
+		});
+		btnCalcularPeso.setBounds(262, 42, 125, 23);
+		contentPane.add(btnCalcularPeso);
+	}
+}
