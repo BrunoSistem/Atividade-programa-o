@@ -1,0 +1,132 @@
+package Game;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Jogo extends JFrame {
+	
+	public static int randInt(int max, int min) {
+		java.util.Random rand = new java.util.Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
+	}
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Jogo frame = new Jogo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Jogo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 605, 380);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblOpcoes = new JLabel("Pedra, papel ou tesoura?");
+		lblOpcoes.setFont(new Font("Consolas", Font.PLAIN, 14));
+		lblOpcoes.setBounds(173, 11, 200, 24);
+		contentPane.add(lblOpcoes);
+		
+		JRadioButton pedra = new JRadioButton("Pedra");
+		pedra.setFont(new Font("Consolas", Font.PLAIN, 18));
+		pedra.setBounds(213, 42, 109, 40);
+		contentPane.add(pedra);
+		
+		JRadioButton papel = new JRadioButton("Papel");
+		papel.setFont(new Font("Consolas", Font.PLAIN, 18));
+		papel.setBounds(213, 93, 109, 40);
+		contentPane.add(papel);
+		
+		JRadioButton tesoura = new JRadioButton("Tesoura");
+		tesoura.setFont(new Font("Consolas", Font.PLAIN, 18));
+		tesoura.setBounds(213, 147, 109, 40);
+		contentPane.add(tesoura);
+		
+		JButton btnJogar = new JButton("Jogar");
+		btnJogar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				int x = randInt(2, 0);
+				
+				if(pedra.isSelected()) {
+					if(x == 0) {
+						JOptionPane.showMessageDialog(null, "Empate");
+						pedra.setSelected(false);
+					}
+					if(x < 1) {
+						JOptionPane.showConfirmDialog(null, "You Lose, tente outra vez!!");
+						pedra.setSelected(false);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "You Win");
+					}
+				}
+				if(papel.isSelected()) {
+					if(x == 1) {
+						JOptionPane.showMessageDialog(null, "Empate");
+						papel.setSelected(false);
+					}
+					if(x < 2) {
+						JOptionPane.showConfirmDialog(null, "You Lose, tente outra vez");
+						papel.setSelected(false);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "You Win");
+						papel.setSelected(false);
+					}
+				}
+				if(tesoura.isSelected()) {
+					if(x == 2) {
+						JOptionPane.showMessageDialog(null, "Empate!!");
+						tesoura.setSelected(false);
+					}
+					if(x < 1) {
+						JOptionPane.showMessageDialog(null, "You Lose, tente outra vez!!");
+						tesoura.setSelected(false);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "You Win!!");
+						tesoura.setSelected(false);
+					}
+					
+				}
+			
+			}
+		});
+		btnJogar.setFont(new Font("Consolas", Font.PLAIN, 18));
+		btnJogar.setBounds(233, 266, 89, 31);
+		contentPane.add(btnJogar);
+		
+	}
+}
