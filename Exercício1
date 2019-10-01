@@ -1,0 +1,106 @@
+package Exercicio1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Triangulo extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField number1;
+	private JTextField number2;
+	private JTextField number3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Triangulo frame = new Triangulo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Triangulo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbLado1 = new JLabel("Lado 1");
+		lbLado1.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lbLado1.setBounds(10, 22, 61, 24);
+		contentPane.add(lbLado1);
+		
+		JLabel lbLado2 = new JLabel("Lado 2");
+		lbLado2.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lbLado2.setBounds(10, 64, 61, 24);
+		contentPane.add(lbLado2);
+		
+		JLabel lbLado3 = new JLabel("Lado 3");
+		lbLado3.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lbLado3.setBounds(10, 111, 61, 24);
+		contentPane.add(lbLado3);
+		
+		number1 = new JTextField();
+		number1.setBounds(119, 26, 96, 20);
+		contentPane.add(number1);
+		number1.setColumns(10);
+		
+		number2 = new JTextField();
+		number2.setBounds(119, 68, 96, 20);
+		contentPane.add(number2);
+		number2.setColumns(10);
+		
+		number3 = new JTextField();
+		number3.setBounds(119, 111, 96, 20);
+		contentPane.add(number3);
+		number3.setColumns(10);
+		
+		JLabel lbResultado = new JLabel("");
+		lbResultado.setBounds(264, 71, 125, 14);
+		contentPane.add(lbResultado);
+		
+		JButton btnVerifica = new JButton("Verifica");
+		btnVerifica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String lado1 = number1.getText();
+				String lado2 = number2.getText();
+				String lado3 = number3.getText();
+				
+				if(lado1.equals(lado2) && lado1.equals(lado3)) {
+					lbResultado.setText("Triangulo Equilátero");
+				}
+				else if((lado1.equals(lado2) || lado1.equals(lado3)) || (lado2.equals(lado3))) {
+					lbResultado.setText("Triângulo Isósceles");
+				}
+				else {
+					lbResultado.setText("Triângulo Escaleno");
+				}
+			}
+		});
+		btnVerifica.setBounds(50, 186, 89, 23);
+		contentPane.add(btnVerifica);
+	}
+}
